@@ -10,7 +10,7 @@ export function Header() {
     <header className="header">
       <div className="container">
         <Link to="/" className="logo">
-          Livraria Virtual
+          Libris
         </Link>
         <nav>
           <Link to="/search">Buscar</Link>
