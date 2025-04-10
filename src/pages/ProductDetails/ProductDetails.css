@@ -1,0 +1,14 @@
+/* src/pages/ProductDetails/ProductDetails.css */
+
+.product-details {
+  padding: 2rem;
+}
+
+.product-details .title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.product-details .description {
+  line-height: 1.6;
+}
