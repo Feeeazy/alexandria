@@ -42,7 +42,7 @@ export function Login() {
           <button type="submit" className="btn">Entrar</button>
           
           <p>
-            Não tem uma conta? <Link to="/register">Cadastre-se</Link>
+            Não tem uma conta? <Link to="/register" className={"link-label"}>Cadastre-se</Link>
           </p>
         </form>
       </div>

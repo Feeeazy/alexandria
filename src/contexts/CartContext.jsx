@@ -19,8 +19,17 @@ export function CartProvider({ children }) {
     });
   };
 
-  const removeFromCart = (bookId) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== bookId));
+  const removeFromCart = (book) => {
+    setCart(prevCart => {
+      const item = prevCart.find(item => item.id === book.id);
+      console.log(item);
+      if (item.quantity === 1) {
+        return prevCart.filter(item => item.id !== book.id);
+      }
+      return prevCart.map(item =>
+        item.id === book.id ? { ...item, quantity: item.quantity - 1 } : item
+      );
+    })
   };
 
   return (

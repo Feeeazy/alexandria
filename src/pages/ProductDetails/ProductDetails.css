@@ -1,5 +1,3 @@
-/* src/pages/ProductDetails/ProductDetails.css */
-
 .product-details {
   width: 100%;
   height: 100%;
@@ -50,4 +48,24 @@
 .price {
   font-size: 2rem;
   margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .product-description {
+    flex-direction: column;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    text-align: justify;
+  }
+
+  .product-description h1 {
+    font-size: 2rem;
+  }
+
+  .product-description .author {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
 }
