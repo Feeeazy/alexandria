@@ -12,9 +12,15 @@ export function Cart() {
       <div className="container">
         <h1>Carrinho de Compras</h1>
         
-        {cart.length === 0 ? (
-          <p>Seu carrinho está vazio.</p>
-        ) : (
+        {cart.length === 0 ? 
+        (
+          <>
+          <p>Seu carrinho está vazio.</p>  
+          <img src="'../../assets/book.png" alt="" />
+          </>
+        )  
+        
+         : (
           <>
             <div className="cart-items">
               {cart.map(item => (

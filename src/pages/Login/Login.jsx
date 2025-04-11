@@ -17,7 +17,7 @@ export function Login() {
       <div className="container">
         <h1>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
-          <div>
+          <div className='form-group'>
             <label htmlFor="email">E-mail:</label>
             <input
               type="email"
@@ -28,7 +28,7 @@ export function Login() {
             />
           </div>
           
-          <div>
+          <div className='form-group'>
             <label htmlFor="password">Senha:</label>
             <input
               type="password"

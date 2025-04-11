@@ -14,10 +14,11 @@ import './styles/global.css';
 function App() {
     return (
         <BrowserRouter>
+        
             <CartProvider>
                 <Header />
                 <main>
-                    <Routes>
+                <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="/cart" element={<Cart />} />
@@ -28,6 +29,8 @@ function App() {
                 </main>
                 <Footer />
             </CartProvider>
+            
+
         </BrowserRouter>
     );
 }
