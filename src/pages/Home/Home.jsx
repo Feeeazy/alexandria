@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { books } from '../../data/books';
 import BookCard from '../../components/BookCard/BookCard.jsx';
 import './Home.css';
@@ -10,7 +9,7 @@ export function Home() {
   return (
     <div className="home">
       <div className="container">
-        <h1>Bem-vindo à Livraria Virtual</h1>
+        <h1>Bem-vindo à Libris</h1>
         
         <section className="featured">
           <h2>Livros em Destaque</h2>

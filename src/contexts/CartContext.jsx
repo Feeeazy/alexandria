@@ -22,7 +22,6 @@ export function CartProvider({ children }) {
   const removeFromCart = (book) => {
     setCart(prevCart => {
       const item = prevCart.find(item => item.id === book.id);
-      console.log(item);
       if (item.quantity === 1) {
         return prevCart.filter(item => item.id !== book.id);
       }
