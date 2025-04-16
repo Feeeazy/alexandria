@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
 import './Cart.css';
 
@@ -18,9 +19,9 @@ export function Cart() {
               <div className="empty-cart">
                   <p>Seu carrinho está sem histórias para contar...</p>
                   <p>Adicione um livro e comece a sua próxima aventura!</p>
-                  <img src="../../../public/cart_empty.png" alt="Carrinho Vazio"/>
+                  <Link to="/search" className="btn-ver-livros">Buscar uma nova história!</Link>
               </div>
-                    </>
+          </>
         )  
         
          : (
