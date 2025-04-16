@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implementar lógica de login aqui
-    console.log('Login:', { email, password });
+
+    if (!email || !password) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+    navigate('/search');
   };
 
   return (
@@ -42,7 +47,7 @@ export function Login() {
           <button type="submit" className="btn">Entrar</button>
           
           <p>
-            Não tem uma conta? <Link to="/register" className={"link-label"}>Cadastre-se</Link>
+            Não tem uma conta? <Link to="/register" className="link-label">Cadastre-se</Link>
           </p>
         </form>
       </div>
