@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 
 export function Register() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     email: '',
-    password: '',
+    senha: '',
     confirmPassword: ''
   });
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -17,24 +19,54 @@ export function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implementar lógica de cadastro aqui
-    console.log('Cadastro:', formData);
+    setError('');
+
+    if (formData.senha !== formData.confirmPassword) {
+      setError('As senhas não conferem');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8080/api/clientes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome: formData.nome,
+          email: formData.email,
+          senha: formData.senha
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error("Email já cadastrado no sistema");
+      }
+
+      alert('Cadastro realizado com sucesso!');
+      navigate('/login');
+    } catch (error) {
+      setError("Email já cadastrado no sistema");
+    }
   };
+
 
   return (
     <div className="register">
       <div className="container">
         <h1>Cadastro</h1>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit} className="register-form">
           <div>
             <label htmlFor="name">Nome:</label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="nome"
+              name="nome"
+              value={formData.nome}
               onChange={handleChange}
               required
             />
@@ -56,9 +88,9 @@ export function Register() {
             <label htmlFor="password">Senha:</label>
             <input
               type="password"
-              id="password"
-              name="password"
-              value={formData.password}
+              id="senha"
+              name="senha"
+              value={formData.senha}
               onChange={handleChange}
               required
             />

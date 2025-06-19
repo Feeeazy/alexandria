@@ -1,34 +1,71 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import './Login.css';
 
 export function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    senha: ''
+  });
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { login } = useAuth();
 
-    if (!email || !password) {
-      alert('Por favor, preencha todos os campos.');
-      return;
-    }
-    navigate('/search');
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:8080/api/clientes/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Email ou senha incorretos');
+      }
+
+      const data = await response.json();
+
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.id);
+      localStorage.setItem('userName', data.nome);
+      login({ nome: data.nome });
+
+      navigate('/');
+    } catch (error) {
+      setError(error.message || 'Erro ao fazer login');
+    }
+  };
+
 
   return (
     <div className="login">
       <div className="container">
         <h1>Login</h1>
+        {error && <div className="error-message">{error}</div>}
+
         <form onSubmit={handleSubmit} className="login-form">
           <div className='form-group'>
             <label htmlFor="email">E-mail:</label>
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -37,9 +74,10 @@ export function Login() {
             <label htmlFor="password">Senha:</label>
             <input
               type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="senha"
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
               required
             />
           </div>

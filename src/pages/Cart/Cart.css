@@ -111,12 +111,13 @@
   }
 
   .cart-item-info {
-    margin-left: 0;
+    margin-left: 0.5rem;
     margin-top: 0.5rem;
   }
 
   .cart-item-image {
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
   }
 
@@ -134,3 +135,4 @@
     margin-top: 1rem;
   }
 }
+
