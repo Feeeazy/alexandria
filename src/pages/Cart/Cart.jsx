@@ -38,15 +38,15 @@ export function Cart() {
             });
 
             if (!response.ok) {
-                throw new Error('Erro ao finalizar a compra');
+                setError(response.message);
             }
-
-            const pedido = await response.json();
+            await response.json();
             clearCart();
             alert('Compra finalizada com sucesso!');
             navigate('/');
+           
         } catch (error) {
-            setError('Erro ao finalizar a compra. Por favor, tente novamente.');
+            console.error(error);
         }
     };
 
