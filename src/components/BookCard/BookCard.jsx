@@ -9,27 +9,34 @@ const BookCard = ({ book }) => {
 
   return (
     <div className="book-card">
+
       <div className="book-image">
-        <img src={urlImagem} alt={titulo} width={50} />
+        <img src={urlImagem} alt={titulo} width={50}/>
       </div>
-      <div>
-        <h3 className="book-title">{titulo}</h3>
-      </div>
-      <div className="book-info">
-        <p className="book-author">{autor}</p>
-        <p className="book-price">R$ {preco.toFixed(2)}</p>
-        <div className="book-actions">
-          <Link to={`/book/${id}`} className="details-button">
-            Ver Detalhes
-          </Link>
-          <button
-            onClick={() => addToCart(book)}
-            className="btn"
-          >
-            Adicionar ao Carrinho
-          </button>
+
+        <div className="container-book-title">
+          <h3 className="book-title">{titulo}</h3>
         </div>
+
+        <div className="book-info">  
+          
+          <p className="book-author">{autor}</p>
+          <p className="book-price">R$ {preco.toFixed(2)}</p>
+          <div className="book-actions">
+            <Link to={`/book/${id}`} className="details-button">
+              Ver Detalhes
+            </Link>
+              <button
+                  onClick={() => addToCart(book)}
+                  className="btn"
+              >
+                  Adicionar ao Carrinho
+              </button>
+              
+          </div>
+
       </div>
+
     </div>
   );
 };
