@@ -117,13 +117,13 @@
 
   .cart-item-image {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
   }
 
   .cart-item-actions {
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     height: auto;
     padding: 0.5rem;
     margin-top: 1rem;
